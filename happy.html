@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Quiz</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #ffc0cb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        .container {
+            background: #ffe4e1;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            text-align: center;
+        }
+        h2 {
+            color: #ff69b4;
+        }
+        p {
+            font-size: 18px;
+            color: #d14787;
+        }
+        input {
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            padding: 8px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d14787;
+        }
+        .message {
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            font-size: 20px;
+            color: #d14787;
+            animation: pop 1s ease-in-out;
+            max-width: 80%;
+            text-align: center;
+        }
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .heart {
+            font-size: 40px;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop autoplay>
+        <source src="Sunsets With You - Cliff, Yden (Official Lyric Video).mp3" type="audio/mpeg">
+    </audio>
+    
+    <button onclick="toggleMusic()">Play/Pause Music</button>
+    
+    <div class="container" id="quiz-container">
+        <h2>Birthday Quiz 🎂</h2>
+        <p>1. What is our call sign?</p>
+        <input type="text" id="q1">
+        <p>2. When is our anniversary? (MM/DD/YYYY)</p>
+        <input type="text" id="q2">
+        <p>3. How many years have we been together?</p>
+        <input type="number" id="q3">
+        <br>
+        <button onclick="checkAnswers()">Submit</button>
+        <p id="result"></p>
+    </div>
+    
+    <div class="message" id="success-message" style="display: none;">
+        <span class="heart">💖</span>
+        <h1>YEEYYYYY!! You really are my girlfriend 💖</h1>
+        <span class="heart">💖</span>
+        <br>
+        <button onclick="window.location.href='sweet-message.html'">Next Page</button>
+    </div>
+    
+    <script>
+        function checkAnswers() {
+            let answer1 = document.getElementById("q1").value.toLowerCase();
+            let answer2 = document.getElementById("q2").value;
+            let answer3 = document.getElementById("q3").value;
+            
+            if (answer1 === "babi" && answer2 === "05/10/2023" && answer3 == "1") {
+                document.getElementById("quiz-container").style.display = "none";
+                document.getElementById("success-message").style.display = "block";
+            } else {
+                document.getElementById("result").innerText = "Ohh, you're not my girlfriend. 😢";
+            }
+        }
+        
+        function toggleMusic() {
+            let music = document.getElementById("bg-music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+</body>
+</html>
