@@ -71,14 +71,30 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
+        .letter-container {
+            display: none;
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            text-align: center;
+            max-width: 80%;
+            animation: openLetter 1s ease-in-out;
+        }
+        @keyframes openLetter {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
-    <audio id="bg-music" loop autoplay>
+    <audio id="bg-music" loop>
         <source src="Sunsets With You - Cliff, Yden (Official Lyric Video).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
     
     <button onclick="toggleMusic()">Play/Pause Music</button>
+    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="1" onchange="adjustVolume()">
     
     <div class="container" id="quiz-container">
         <h2>Birthday Quiz 🎂</h2>
@@ -98,7 +114,51 @@
         <h1>YEEYYYYY!! You really are my girlfriend 💖</h1>
         <span class="heart">💖</span>
         <br>
-        <button onclick="window.location.href='sweet-message.html'">Next Page</button>
+        <button onclick="document.getElementById('letter').style.display='block'">Open Letter</button>
+    </div>
+    
+    <div id="letter" class="letter-container">
+        <h2>HAPPYYY BIRTHHDAYYY BABIIII! 🎉💖</h2>
+        <p>
+            First and foremost, ILOVEYOU ILOVEYOU ILOVEYOU, Thank you for being the most wonderful and 
+            amazing girlfriend a person could ask for. You're my confidant, my cheerleader, my safe place, 
+            my home. You always know how to make me smile even though it seems impossible. You were always 
+            there to celebrate my wins, and to hold my hand when everything gets tough. You're thoughtful, 
+            kindness and your cuteness make me in love with you even more. Your love is a gift I cherish 
+            every day.
+        </p>
+        <p>
+            And then there's your dedication to nursing.  I see how hard you work, how passionate you are 
+            about helping others, and how determined you are to succeed.  Nursing is a demanding field as 
+            well as pressure, both physically and emotionally, and you handle it with compassion. You're 
+            going to be an amazing nurse baby, and I do not doubt that you'll make a real difference in the 
+            lives of so many people for how sincere you are.
+        </p>
+        <p>
+            I know life hasn't always been that friendly for you. You've faced challenges that would knock 
+            most people down, but you always rise stronger.  Your strength, and courage to keep continuing 
+            with life even though it keeps throwing rocks at you are truly admirable.  You inspire and never 
+            fail to amaze me every day with your ability to overcome obstacles and keep moving forward with 
+            such positivity.  Never forget how incredibly strong you are.
+        </p>
+        <p>
+            Today is your birthday, and I hope your day is filled with all your heart's desires, with all the 
+            happiness, joy, and love that you deserve. I'm grateful for your presence in my life, and I can't 
+            wait to see what the future holds for us especially you. I'm wishing a happy birthday, my babii. 
+            I love you more than any words that a poet can create.
+        
+            -Babii
+        </p>
+        <p>
+            I'm really sorry babi if I can't take you out on a date, I just can't save money anymore since 
+            gamay nlng ibilin an kwarta para namo, and don't worry bawi rako nimo puhon haaa. I will give 
+            you everything and take care of you, and I hope you won't get tired of waiting since I have a 
+            long way to go... I love you
+        </p>
+        <br>
+        <audio controls>
+            <source src="your-voice-message.mp3" type="audio/mpeg">
+        </audio>
     </div>
     
     <script>
@@ -122,6 +182,12 @@
             } else {
                 music.pause();
             }
+        }
+
+        function adjustVolume() {
+            let music = document.getElementById("bg-music");
+            let volumeControl = document.getElementById("volume-control");
+            music.volume = volumeControl.value;
         }
     </script>
 </body>
